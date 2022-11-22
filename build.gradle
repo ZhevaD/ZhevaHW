@@ -10,9 +10,16 @@ tasks.withType (JavaCompile) {
     options.encoding = 'UTF-8'
 }
 
-//dependencies {
-//    testImplementation ()
-//}
+dependencies {
+    implementation 'org.testng:testng:7.1.0'
+    testImplementation (
+            'org.junit.jupiter:junit-jupiter:5.8.2'
+    )
+}
+
+test {
+    useJUnitPlatform()
+}
 
 help {
     doFirst {
