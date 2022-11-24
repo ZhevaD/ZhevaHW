@@ -17,19 +17,40 @@ public class TestBoxTests {
 
     @Test
     void fillFromTest() {
-        String userName = "Zheva";
+        String firstName = "Dmitriy";
+        String lastName = "Zheva";
         String Email = "Zheva@zheva.com";
-        open("/text-box");
+        String mobilePhone = "9216666666";
+        String currentAddress = "Russia";
+        String bDate = "08 Nov 1990";
 
-        $("#userName").setValue(userName);
+
+        open("/automation-practice-form");
+
+        $("#firstName").setValue(firstName);
+        $("#lastName").setValue(lastName);
         $("#userEmail").setValue(Email);
-        $("#currentAddress").setValue("Address-Kupchino");
-        $("#permanentAddress").setValue("Address-Frunzenskiy District");
-        $("#submit").click();
+        $("#gender-radio-1").doubleClick();
+        $("#userNumber").setValue(mobilePhone);
+        $("#dateOfBirthInput").click();
+        $(".react-datepicker__month-select").selectOption("November");
+        $(".react-datepicker__month-select").click();
+        $(".react-datepicker__year-select").selectOption("1990");
+        $(".react-datepicker__year-select").click();
+        $(".react-datepicker__day--08").click(); // НАДО решить как выбрать нужный день
 
-        $("#output").shouldBe(visible);
-        $("#output #name").shouldHave(text(userName));
-        $("#output #email").shouldHave(text(Email));
+        $("#dateOfBirthInput").setValue(bDate);
+        $("#subjectsInput").setValue("Guns");
+        $("#hobbies-checkbox-1").setValue("1");
+//        $("#uploadPicture").click();
+        $("#currentAddress").setValue(currentAddress);
+//        $("#state").setValue(currentAddress);
+        $("submit").click();
+
+
+
+
+        $("class=modal-body").shouldBe(visible);
 
     }
 }
