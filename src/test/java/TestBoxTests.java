@@ -17,7 +17,6 @@ public class TestBoxTests {
         Configuration.browserSize = "1920x1080";
         Configuration.baseUrl = "https://demoqa.com";
     }
-
     @Test
     void fillFromTest() {
         String firstName = "Dmitriy";
@@ -25,8 +24,6 @@ public class TestBoxTests {
         String eMail = "Zheva@zheva.com";
         String mobilePhone = "9216666666";
         String currentAddress = "Russia";
-        String bDate = "08 Nov 1990";
-
 
         open("/automation-practice-form");
 
@@ -67,10 +64,5 @@ public class TestBoxTests {
         $(".modal-content").shouldHave(text("Russia"));
         $(".modal-content").shouldHave(text("Haryana Panipat"));
         $("#closeLargeModal").click();
-
-
-
-
-
     }
 }
