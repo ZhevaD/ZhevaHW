@@ -1,10 +1,8 @@
-package Zheva;
+package zheva;
 
 import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-
-import java.io.File;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
@@ -22,7 +20,7 @@ public class TestBoxTests {
     @Test
     void fillFromTest() {
         String firstName = "Dmitriy";
-        String lastName = "Zheva";
+        String lastName = "zheva";
         String eMail = "Zheva@zheva.com";
         String mobilePhone = "9216666666";
         String currentAddress = "Russia";
@@ -32,18 +30,16 @@ public class TestBoxTests {
         $("#firstName").setValue(firstName);
         $("#lastName").setValue(lastName);
         $("#userEmail").setValue(eMail);
-        $("#gender-radio-1").doubleClick();
+        $("#genterWrapper").$(byText("Male")).click();
         $("#userNumber").setValue(mobilePhone);
         $("#dateOfBirthInput").click();
         $(".react-datepicker__month-select").selectOption("November");
-        $(".react-datepicker__month-select").click();
         $(".react-datepicker__year-select").selectOption("1990");
-        $(".react-datepicker__year-select").click();
         $(".react-datepicker__day--008").click();
-        $("#uploadPicture").uploadFile(new File("src/test/resources/123.png"));
+//        $("#uploadPicture").uploadFile(new File("src/test/resources/123.png"));
+        $("#uploadPicture").uploadFromClasspath("123.png");
         $("#subjectsInput").click();
-        $("#subjectsInput").setValue("Comp");
-        $("#subjectsInput").pressEnter();
+        $("#subjectsInput").setValue("Comp").pressEnter();
         $("#hobbies-checkbox-1").parent().click();
         $("#hobbies-checkbox-2").parent().click();
         $("#hobbies-checkbox-3").parent().click();
