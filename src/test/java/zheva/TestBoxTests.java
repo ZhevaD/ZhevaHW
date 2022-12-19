@@ -7,13 +7,14 @@ import org.junit.jupiter.api.Test;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.byText;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.Selenide.executeJavaScript;
 
 public class TestBoxTests {
+    private final String TITLE_TEXT = "Student Registration Form";
     @BeforeAll
     static void beforeAll() {
-        Configuration.holdBrowserOpen = true;
+//        Configuration.holdBrowserOpen = true;
         Configuration.browserSize = "1920x1080";
         Configuration.baseUrl = "https://demoqa.com";
     }
@@ -26,6 +27,9 @@ public class TestBoxTests {
         String currentAddress = "Russia";
 
         open("/automation-practice-form");
+        $(".practice-form-wrapper").shouldHave(text(TITLE_TEXT));
+        executeJavaScript("$('#fixedban').remove()"); //не знаю что это такое
+        executeJavaScript("$('footer').remove()"); // видимо это убирает рекламу снизу
 
         $("#firstName").setValue(firstName);
         $("#lastName").setValue(lastName);
