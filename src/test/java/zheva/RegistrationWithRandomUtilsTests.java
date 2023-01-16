@@ -5,6 +5,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import static Utils.RandomUtils.*;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.byText;
@@ -12,28 +13,16 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 import static zheva.TestData.*;
 
-public class RegistrationWithDataTests {
-//    static String firstName,
-//            lastName,
-//            eMail,
-//            mobilePhone,
-//            currentAddress;
-    @BeforeAll
-    static void beforeAll() {
+public class RegistrationWithRandomUtilsTests extends TestBase {
 
-        Configuration.holdBrowserOpen = true;
-        Configuration.browserSize = "1920x1080";
-        Configuration.baseUrl = "https://demoqa.com";
-    }
 
-    @BeforeEach
-    void beforeEach () {
-//        firstName = getNewFirstName (); - можно и так но я не понял куда записывать сами данные
-//        lastName = getNewLastName ();
-    }
     @Test
     void fillFromTest() {
 
+        String firstName = randomString(10);
+        String lastName = randomString(10);
+        String eMail = randomEmail(10);
+        String mobilePhone = randomPhone("10",1111111L,99999999L);
 
         open("/automation-practice-form");
 
@@ -102,6 +91,6 @@ public class RegistrationWithDataTests {
         $("#submit").click();
         //Check-out
         $(".modal-content").shouldBe(visible);
-        //todo
+
     }
 }

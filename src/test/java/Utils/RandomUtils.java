@@ -11,7 +11,7 @@ public class RandomUtils {
 //        System.out.println(randomString(10));
 //        System.out.println(randomEmail(10));
 //        System.out.println(randomNumber(100000L,9999999L));
-//        System.out.println(randomPone("+000", 0000000L,9999999L));
+//        System.out.println(randomPhone("+000", 0000000L,9999999L));
 //    }
 
         int length = 10;
@@ -23,7 +23,7 @@ public class RandomUtils {
         System.out.println(RandomStringUtils.random(20, false, true));
     }
 
-    static String randomString(int len) {
+    public static String randomString(int len) {
         String AB = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
         SecureRandom rnd = new SecureRandom();
         StringBuilder sb = new StringBuilder(len);
@@ -31,13 +31,13 @@ public class RandomUtils {
             sb.append(AB.charAt(rnd.nextInt(AB.length())));
         return sb.toString();
     }
-    static String randomEmail(int len) {
+    public static String randomEmail(int len) {
         return randomString(len) + "@zheva.com";
     }
-    static Long randomNumber(Long min, Long max) {
+    public static Long randomNumber(Long min, Long max) {
         return ThreadLocalRandom.current().nextLong(min, max);
     }
-    static String randomPone(String prefix, Long min, Long max) {
+    public static String randomPhone(String prefix, Long min, Long max) {
         return prefix + randomNumber(min, max);
     }
 }
