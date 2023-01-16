@@ -24,8 +24,8 @@ public class RegistrationPage {
     public RegistrationPage openPage() {
         open("/automation-practice-form");
         $(".practice-form-wrapper").shouldHave(text(TITLE_TEXT));
-        executeJavaScript("$('#fixedban').remove()"); //не знаю что это такое
-        executeJavaScript("$('footer').remove()"); // не знаю что это такое
+        executeJavaScript("$('#fixedban').remove()"); //=убирает рекламу
+        executeJavaScript("$('footer').remove()"); //убирает рекламу вроде бы
 
         return this;
     }
@@ -67,7 +67,6 @@ public class RegistrationPage {
     public RegistrationPage setBirthDate(String day, String month, String year) {
         dateOfBirthInput.click();
         calendarComponent.setDate(day, month, year);
-
         return this;
     }
     public RegistrationPage verifyResultsModalAppears() {
