@@ -1,9 +1,10 @@
 package zheva;
 
-import com.codeborne.selenide.Configuration;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
+import com.github.javafaker.Faker;
 import org.junit.jupiter.api.Test;
+import zheva.TestBase;
+
+import java.util.Locale;
 
 import static Utils.RandomUtils.*;
 import static com.codeborne.selenide.Condition.text;
@@ -12,16 +13,18 @@ import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 import static zheva.TestData.*;
 
-public class RegistrationWithRandomUtilsTests extends TestBase {
+public class RegistrationWithFakerTests extends TestBase {
 
 
     @Test
     void fillFromTest() {
+        Faker faker = new Faker(new Locale("en"));
 
-        String firstName = randomString(10);
-        String lastName = randomString(10);
-        String eMail = randomEmail(10);
-        String mobilePhone = randomPhone("921",1111111L,99999999L);
+        String firstName = faker.name().firstName();
+        String lastName = faker.name().lastName();
+        String eMail = faker.internet().emailAddress();
+        String mobilePhone = faker.phoneNumber().subscriberNumber(10);
+        String currentAddress = faker.address().fullAddress();
 
         open("/automation-practice-form");
         executeJavaScript("$('#fixedban').remove()");
@@ -59,7 +62,7 @@ public class RegistrationWithRandomUtilsTests extends TestBase {
         $(".modal-content").shouldHave(text("Computer Science"));
         $(".modal-content").shouldHave(text("Sports, Reading, Music"));
         $(".modal-content").shouldHave(text("123.png"));
-        $(".modal-content").shouldHave(text("Russia"));
+        $(".modal-content").shouldHave(text(currentAddress));
         $(".modal-content").shouldHave(text("Haryana Panipat"));
         $("#closeLargeModal").click();
     }
