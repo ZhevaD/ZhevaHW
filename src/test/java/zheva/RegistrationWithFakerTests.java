@@ -2,6 +2,7 @@ package zheva;
 
 import com.github.javafaker.Faker;
 import org.junit.jupiter.api.Test;
+import zheva.TestBase;
 
 import java.util.Locale;
 
@@ -17,13 +18,13 @@ public class RegistrationWithFakerTests extends TestBase {
 
     @Test
     void fillFromTest() {
-        Faker faker = new Faker(new Locale("ru"));
+        Faker faker = new Faker(new Locale("en"));
 
         String firstName = faker.name().firstName();
         String lastName = faker.name().lastName();
         String eMail = faker.internet().emailAddress();
         String mobilePhone = faker.phoneNumber().subscriberNumber(10);
-        String currentAddress = faker.lebowski().quote();
+        String currentAddress = faker.address().fullAddress();
 
         open("/automation-practice-form");
         executeJavaScript("$('#fixedban').remove()");

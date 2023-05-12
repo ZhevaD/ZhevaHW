@@ -8,18 +8,13 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class RandomUtils {
     public static void main(String[] args) {
-//        System.out.println(randomString(10));
-//        System.out.println(randomEmail(10));
-//        System.out.println(randomNumber(100000L,9999999L));
-//        System.out.println(randomPhone("+000", 0000000L,9999999L));
-//    }
 
         int length = 10;
         boolean useLetters = true;
         boolean useNumbers = false;
         System.out.println(RandomStringUtils.random(20, false, false));
-        System.out.println(RandomStringUtils.random(20, true, false));
-        System.out.println(RandomStringUtils.random(20, true, true));
+        System.out.println(RandomStringUtils.random(23, true, false));
+        System.out.println(RandomStringUtils.random(64, true, true));
         System.out.println(RandomStringUtils.random(20, false, true));
     }
 
